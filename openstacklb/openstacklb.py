@@ -653,7 +653,7 @@ def find_flavours(nova):
         keystoneauth1.exceptions.connection.SSLError
         novaclient.exceptions.Forbidden
     """
-    return nova.flavors.list()
+    return nova.flavors.list(is_public=None)
 
 
 def find_flavour_of_vm(nova, vm):
