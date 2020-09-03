@@ -48,7 +48,7 @@ DEFAULT_OS_LIMIT_TO_AZ = "nova"
 DEFAULT_OS_LIMIT_TO_EXACT_CPU_SPEC_MATCH = "FALSE"
 
 DEFAULT_PROMETHEUS_CPU_USED = 'sort_desc(100 - (cpu_usage_idle and on (host) label_replace(openstack_nova_ram and on (hostname) (openstack_nova_service_status == 1 and openstack_nova_service_state == 1), "host", "$1", "hostname", "(.*)")))/100'
-DEFAULT_PROMETHEUS_MEM_USED = 'sort_desc(avg_over_time(mem_used_percent{openstack_role="compute", region="gdc"}[1m])/100)'
+DEFAULT_PROMETHEUS_MEM_USED = 'sort_desc(mem_used_percent and on (host) label_replace(openstack_nova_ram and on (hostname) (openstack_nova_service_status == 1 and openstack_nova_service_state == 1), "host", "$1", "hostname", "(.*)"))/100'
 DEFAULT_PROMETHEUS_QUERY_URL = "http://prometheus:9090/api/v1/query"
 
 # Relative weights of how important the metrics are for the synthetic scoring.
